@@ -6,17 +6,35 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is your name?',
+            message: 'What is your name? (Required)',
+            // this validates that the user has entered a name
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your name!')
+                    return false
+                }
+            }
         },
         {
             type: 'input',
             name: 'github',
-            message: 'Enter your GitHub Username',
+            message: 'Enter your GitHub Username (Required)',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your GitHub Username!')
+                    return false
+                }
+            }
         },
         {
             type: 'input',
             name: 'about',
-            message: 'Provide some information about yourself'
+            message: 'Provide some information about yourself',
+            
         }
     ]);
 };
@@ -37,12 +55,28 @@ Add a New Project
             {
                 type: 'input',
                 name: 'name',
-                message: 'What is the name of your project?'
+                message: 'What is the name of your project? (Required)',
+                validate: projectInput => {
+                    if (projectInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter your project name!')
+                        return false
+                    }
+                }
             },
             {
                 type: 'input',
                 name: 'description',
-                message: 'Provide a description of the project (Required)'
+                message: 'Provide a description of the project (Required)',
+                validate: descriptionInput => {
+                    if (descriptionInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter a description of your project!')
+                        return false
+                    }
+                }
             },
             {
                 // checkbox gives a list of answers to choose, multiple choice. Can also use the 'choices' option.
@@ -54,7 +88,15 @@ Add a New Project
             {
                 type: 'input',
                 name: 'link',
-                message: 'Enter the GitHub link to your project. (Required)'
+                message: 'Enter the GitHub link to your project. (Required)',
+                validate: linkInput => {
+                    if (linkInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter your GitHub link!')
+                        return false
+                    }
+                }
             },
             {
                 // boolean, yes or no answer
@@ -83,7 +125,7 @@ Add a New Project
                 }
             });
     };
-}
+};
 // the Promise is resolved by this .then() method with whatever we wish to take place after the Promise is resolved, which is appended to the function call, this allows the function to prompt the user
 promptUser()
     // .then(answers => console.log(answers))
